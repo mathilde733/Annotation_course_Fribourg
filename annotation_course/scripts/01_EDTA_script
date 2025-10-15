@@ -1,0 +1,23 @@
+#!/bin/bash
+#SBATCH --job-name=EDTA_annotation
+#SBATCH --partition=pibu_el8
+#SBATCH --cpus-per-task=16
+#SBATCH --nodes=1
+#SBATCH --mem=64G
+#SBATCH --time=2-00:00:00
+
+WORKDIR=/data/users/mjacquey/annotation_course
+mkdir -p $WORKDIR/results/EDTA_annotation
+cd $WORKDIR/results/EDTA_annotation
+
+apptainer exec \
+    --bind $WORKDIR \
+    /data/courses/assembly-annotation-course/CDS_annotation/containers/EDTA2.2.sif \
+    EDTA.pl \
+    --genome $WORKDIR/data/ERR11437317.asm.bp.p_ctg.fa \
+    --species others \
+    --step all \
+    --sensitive 1 \
+    --cds "/data/users/mjacquey/annotation_course/data/TAIR10_cds_20110103_representative_gene_model_updated" \
+    --anno 1 \
+    --threads 20

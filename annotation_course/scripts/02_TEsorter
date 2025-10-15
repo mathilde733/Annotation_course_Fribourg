@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH --job-name=TEsorter
+#SBATCH --partition=pibu_el8
+#SBATCH --cpus-per-task=16
+#SBATCH --nodes=1
+#SBATCH --mem=64G
+#SBATCH --time=2-00:00:00
+
+WORKDIR=/data/users/mjacquey/annotation_course
+
+apptainer exec --bind $WORKDIR /data/courses/assembly-annotation-course/CDS_annotation/containers/TEsorter_1.3.0.sif \
+    TEsorter \
+    assembly.fasta.mod.EDTA.raw/assembly.fasta.mod.LTR.raw.fa \
+    -db rexdb-plant
+
+#then plot the number of LTR-RTs in each clade with their corresponding percent identity 
+#using the script /data/courses/assembly-annotation-course/CDS_annotation/scripts/02-full_length_LTRs_identity.R 
