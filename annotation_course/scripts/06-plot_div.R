@@ -44,7 +44,8 @@ rep_table.m$fam <- factor(rep_table.m$fam, levels = c(
 rep_table.m$distance <- as.numeric(rep_table.m$variable) / 100 # as it is percent divergence
 
 # Question:
-# rep_table.m$age <- ??? # Calculate using the substitution rate and the formula provided in the tutorial
+rep_table.m$age <- rep_table.m$distance / (2*8.22*10^(-9)) 
+# Calculate using the substitution rate r=8.22*10^(-9) and the formula provided in the tutorial T=K/2r where K is the percent divergence
 
 
 # options(scipen = 999)
@@ -56,13 +57,31 @@ ggplot(rep_table.m, aes(fill = fam, x = distance, weight = value / 1000000)) +
   geom_bar() +
   cowplot::theme_cowplot() +
   scale_fill_brewer(palette = "Paired") +
-  xlab("Distance") +
-  ylab("Sequence (Mbp)") +
+  labs(title = "Landscape graph showing TEs divergence and abundance for each superfamilies", x = "Distance", y = "Sequence (Mbp)") +
+  theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, vjust = 1, size = 9, hjust = 1), plot.title = element_text(hjust = 0.5))
 
 ggsave(filename = "Plots/output.pdf", width = 10, height = 5, useDingbats = F)
 
 
+# Histogram to visualize the distribution of transposon ages by family
+rep_table.m$log10_age <- log10(rep_table.m$age)
+ggplot(rep_table.m, aes(x = log10_age, fill = fam)) +
+  geom_histogram(position = "dodge", bins = 30) +
+  labs(title = "Histogram of Log-transformed Age of Transposons", x = "Log(Age) (years)", y = "Count") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Filter the dataset for Copia and Gypsy families
+filtered_data <- rep_table.m %>% filter(fam %in% c("LTR/Copia", "LTR/Gypsy"))
+
+# Plot histogram for Copia and Gypsy
+ggplot(filtered_data, aes(x = log10_age, fill = fam)) +
+  geom_histogram(position = "dodge", bins = 30) +  # Adjust width for spacing
+  labs(title = "Histogram of Log-transformed Age of Transposons (Proportional) for Copia and Gypsy", 
+       x = "Log(Age) (years)", y = "Density") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 # Why is it important to have this plot in Mbp instead of counts? 
 # Hint: 
