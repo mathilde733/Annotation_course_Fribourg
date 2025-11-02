@@ -8,7 +8,7 @@
 
 WORKDIR=/data/users/mjacquey/annotation_course/results
 
-#apptainer exec --bind $WORKDIR /data/courses/assembly-annotation-course/CDS_annotation/containers/TEsorter_1.3.0.sif TEsorter \
-#	$WORKDIR/Copia_sequences.fa -db rexdb-plant
+apptainer exec --bind $WORKDIR /data/courses/assembly-annotation-course/CDS_annotation/containers/TEsorter_1.3.0.sif TEsorter \
+	$WORKDIR/Copia_sequences.fa -db rexdb-plant
 apptainer exec --bind $WORKDIR /data/courses/assembly-annotation-course/CDS_annotation/containers/TEsorter_1.3.0.sif TEsorter \
 	$WORKDIR/Gypsy_sequences.fa -db rexdb-plant
