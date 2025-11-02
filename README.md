@@ -1,9 +1,14 @@
 # 🧬 Genome Annotation of *Arabidopsis thaliana*
 
-This repository contains the workflow, scripts, and results for the **genome annotation** of an eukaryote genome, e.g., *Arabidopsis thaliana*, carried out as a continuation of the **Genome Assembly course**.
+This repository contains the workflow, scripts, and results for the **genome annotation** of an eukaryote genome, e.g., *Arabidopsis thaliana*, carried out as a continuation of the [Genome Assembly course](https://github.com/mathilde733/Assembly_Annotation_Course.git). 
+
+Remarks: \
+Datasets used are from PacBio HiFi reads (WGS) and Illumina reads (RNA-seq). \
+Accession number: Had-6b, genetic group from Africa. \
+Raw data are from: [Qichao Lian et al. A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range](https://www.nature.com/articles/s41588-024-01715-9) and [Jiao WB, Schneeberger K. Chromosome-level assemblies of multiple Arabidopsis genomes reveal hotspots of rearrangements with altered evolutionary dynamics](http://dx.doi.org/10.1038/s41467-020-14779-y) 
+
 
 ## Project Overview
-After assembling the *A. thaliana* genome, this step focuses on the annotation. 
 
 **Objectives:**
 ---
@@ -30,7 +35,7 @@ Quality assessment of gene annotations using BUSCO and visualization of gene ann
 - [Parse RepeatMasker](https://github.com/4ureliek/Parsing-RepeatMasker-Outputs)
 - R version 4.5.1 using several packages, e.g., library [circlize](https://jokergoo.github.io/circlize/) for circos plot; library(ggplot) for landscape graph
 - [MAKER pipeline version 3.01.03](https://github.com/Yandell-Lab/maker)
-- MPI version 4.1.1-GCC-10.3.0
+- MPI version 4.1.1
 - Augustus version 3.4.0
 - [Interproscan version 5.70-102.0](https://interproscan-docs.readthedocs.io/en/v5/)
 - [BUSCO version 5.4.2](https://busco.ezlab.org)
