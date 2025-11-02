@@ -28,7 +28,7 @@ Quality assessment of gene annotations using BUSCO and visualization of gene ann
 - [EDTA version 2.2](https://github.com/oushujun/EDTA), see [Benchmarking transposable element annotation methods for creation of a streamlined, comprehensive pipeline](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1905-y)
 - [TEsorter version 1.3.0](https://github.com/zhangrengang/TEsorter)
 - [Parse RepeatMasker](https://github.com/4ureliek/Parsing-RepeatMasker-Outputs)
-- R version using several packages, e.g., library [circlize](https://jokergoo.github.io/circlize/) for circos plot; library(ggplot) for landscape graph
+- R version 4.5.1 using several packages, e.g., library [circlize](https://jokergoo.github.io/circlize/) for circos plot; library(ggplot) for landscape graph
 - [MAKER pipeline version 3.01.03](https://github.com/Yandell-Lab/maker)
 - MPI version 4.1.1-GCC-10.3.0
 - Augustus version 3.4.0
