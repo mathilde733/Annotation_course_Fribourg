@@ -3,30 +3,27 @@
 #SBATCH --mem=8G
 #SBATCH --cpus-per-task=1
 #SBATCH --partition=pibu_el8
-#SBATCH --job-name=extract_longest
+#SBATCH --job-name=extract_longest_protein
+
+#this file is used to run BUSCO on the MAKER-produced longest protein sequences
+#run after script 09_update and before 10_busco
 
 
-# General path
+#General path
 WORKDIR="/data/users/mjacquey/annotation_course/scripts"
 ANNODIR="$WORKDIR/final"
 
-# Change to final directory
+#Change to final directory
 cd "$ANNODIR" || exit 1
 
-# Load samtools
+#Load samtools
 module load SAMtools/1.13-GCC-10.3.0
 
-# Define file names
+#Define file names
 protein="ERR11437317.asm.bp.p_ctg.all.maker.proteins.fasta.renamed.filtered.fasta"
 transcript="ERR11437317.asm.bp.p_ctg.all.maker.transcripts.fasta.renamed.filtered.fasta"
 
-echo "========================================"
-echo "Input files:"
-echo "  Protein: $protein"
-echo "  Transcript: $transcript"
-echo "========================================"
-
-# Check if input files exist
+#Check if input files exist
 if [ ! -f "$protein" ]; then
     echo "ERROR: Protein file not found: $protein"
     exit 1
@@ -37,14 +34,14 @@ if [ ! -f "$transcript" ]; then
     exit 1
 fi
 
-# Extract Longest Protein Isoforms using samtools
+#Extract Longest Protein Isoforms using samtools
 echo ""
 echo "Extracting longest protein isoforms with samtools..."
 
-# Step 1: Index the fasta file
+#Step 1: Index the fasta file
 samtools faidx "$protein"
 
-# Step 2: Get sequence lengths and extract gene names
+#Step 2: Get sequence lengths and extract gene names
 cut -f1,2 ${protein}.fai | \
 awk '{
     # Extract gene name (everything before -R)
