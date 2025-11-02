@@ -1,0 +1,22 @@
+#!/bin/bash
+#SBATCH --time=04:00:00
+#SBATCH --mem=64G
+#SBATCH -p pibu_el8
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=50
+#SBATCH --job-name=interproscan
+
+COURSEDIR="/data/courses/assembly-annotation-course/CDS_annotation"
+WORKDIR="/data/users/mjacquey/annotation_course"
+protein="ERR11437317.asm.bp.p_ctg.all.maker.proteins.fasta"
+
+apptainer exec \
+    --bind $COURSEDIR/data/interproscan-5.70-102.0/data:/opt/interproscan/data \
+    --bind $WORKDIR \
+    --bind $COURSEDIR \
+    --bind $SCRATCH:/temp \
+    $COURSEDIR/containers/interproscan_latest.sif \
+    /opt/interproscan/interproscan.sh \
+    -appl pfam --disable-precalc -f TSV \
+    --goterms --iprlookup --seqtype p \
+    -i /data/users/mjacquey/annotation_course/scripts/final/${protein}.renamed.fasta -o output.iprscan

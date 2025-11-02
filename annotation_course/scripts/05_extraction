@@ -1,0 +1,14 @@
+#!/bin/bash
+#SBATCH --job-name=extraction
+#SBATCH --partition=pibu_el8
+#SBATCH --cpus-per-task=16
+#SBATCH --nodes=1
+#SBATCH --mem=12G
+#SBATCH --time=00:20:00
+
+module load SeqKit/2.6.1
+
+# Extract Copia sequences
+seqkit grep -r -p "Copia" /data/users/mjacquey/annotation_course/results/EDTA_annotation/ERR11437317.asm.bp.p_ctg.fa.mod.EDTA.TElib.fa > Copia_sequences.fa
+# Extract Gypsy sequences
+seqkit grep -r -p "Gypsy" /data/users/mjacquey/annotation_course/results/EDTA_annotation/ERR11437317.asm.bp.p_ctg.fa.mod.EDTA.TElib.fa > Gypsy_sequences.fa

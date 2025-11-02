@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH --time=1-0
+#SBATCH --mem=50G
+#SBATCH --partition=pibu_el8
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --job-name=perl
+
+INPUT_FILE=/data/users/mjacquey/annotation_course/results/EDTA_annotation/ERR11437317.asm.bp.p_ctg.fa.mod.EDTA.anno/ERR11437317.asm.bp.p_ctg.fa.mod.out
+OUTDIR=/data/users/mjacquey/annotation_course/results/perl_output
+parseRM=/data/users/mjacquey/annotation_course/scripts/parseRM.pl 
+
+mkdir -p $OUTDIR
+
+cd $OUTDIR
+
+module add BioPerl/1.7.8-GCCcore-10.3.0
+
+perl $parseRM -i $INPUT_FILE -l 50,1 -v

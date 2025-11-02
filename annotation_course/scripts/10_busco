@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH --time=04:00:00
+#SBATCH --mem=64G
+#SBATCH -p pibu_el8
+#SBATCH --nodes=1
+#SBATCH --job-name=busco
+
+maker="ERR11437317.asm.bp.p_ctg.all.maker"
+
+module load BUSCO/5.4.2-foss-2021a
+busco -i ./final/${maker}.proteins.renamed.filtered.longest2.fasta -l brassicales_odb10 -o busco_output -m proteins
+busco -i ./final/${maker}.transcripts.renamed.filtered.longest2.fasta -l brassicales_odb10 -o busco_output -m transcriptome
+
