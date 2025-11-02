@@ -10,6 +10,8 @@ COURSEDIR="/data/courses/assembly-annotation-course/CDS_annotation"
 WORKDIR="/data/users/mjacquey/annotation_course"
 protein="ERR11437317.asm.bp.p_ctg.all.maker.proteins.fasta"
 
+#run interproscan
+
 apptainer exec \
     --bind $COURSEDIR/data/interproscan-5.70-102.0/data:/opt/interproscan/data \
     --bind $WORKDIR \
