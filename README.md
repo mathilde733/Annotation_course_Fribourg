@@ -3,7 +3,7 @@
 This repository contains the workflow, scripts, and results for the **genome annotation** of an eukaryote genome, e.g., *Arabidopsis thaliana*, carried out as a continuation of the **Genome Assembly course**.
 
 ## Project Overview
-After assembling the *A. thaliana* genome, this step focuses 
+After assembling the *A. thaliana* genome, this step focuses on the annotation. 
 
 **Objectives:**
 ---
