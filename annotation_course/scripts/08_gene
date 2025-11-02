@@ -9,11 +9,15 @@
 COURSEDIR="/data/courses/assembly-annotation-course/CDS_annotation"
 MAKERBIN="$COURSEDIR/softwares/Maker_v3.01.03/src/bin"
 
-
+#create a directory
 mkdir final
+
+#assign variables
 protein="ERR11437317.asm.bp.p_ctg.all.maker.proteins.fasta"
 transcript="ERR11437317.asm.bp.p_ctg.all.maker.transcripts.fasta"
 gff="ERR11437317.asm.bp.p_ctg.all.maker.noseq.gff"
+
+#variable prefix is random and can be arbitrarily choose (3 or 4 letters maximum)
 prefix="ERR"
 
 cp $gff final/${gff}.renamed.gff
