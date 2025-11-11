@@ -51,3 +51,6 @@ Steps including:
 - [Orthofinder](https://github.com/davidemms/OrthoFinder)
 - [GENESPACE](https://github.com/jtlovell/GENESPACE) which is a R package
 
+Some of the tools used in this workflow were run within Apptainer containers to ensure reproducibility and consistent environments. The other softwares were installed via modules.
+```apptainer exec --bind /data:/data /containers/apptainer/``` or ```module avail/load name```
+
