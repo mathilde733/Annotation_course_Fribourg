@@ -1,0 +1,33 @@
+#!/bin/bash
+#SBATCH --job-name=uniprot
+#SBATCH --partition=pibu_el8
+#SBATCH --cpus-per-task=16
+#SBATCH --nodes=1
+#SBATCH --mem=64G
+#SBATCH --time=01:30:00
+
+module load BLAST+/2.15.0-gompi-2021a
+COURSEDIR="/data/courses/assembly-annotation-course/CDS_annotation"
+MAKERBIN="$COURSEDIR/softwares/Maker_v3.01.03/src/bin"
+uniprot_fasta="/data/courses/assembly-annotation-course/CDS_annotation/data/uniprot/uniprot_viridiplantae_reviewed.fa"
+
+#makeblastb -in /data/courses/assembly-annotation-course/CDS_annotation/data/uniprot/uniprot_viridiplantae_reviewed.fa -dbtype prot # this step is already done
+
+#blastp -query /data/users/mjacquey/annotation_course/scripts/final/ERR11437317.asm.bp.p_ctg.all.maker.proteins.fasta.renamed.filtered.fasta \
+#    -db /data/courses/assembly-annotation-course/CDS_annotation/data/uniprot/uniprot_viridiplantae_reviewed.fa \
+#    -num_threads 10 -outfmt 6 -evalue 1e-5 -max_target_seqs 10 -out {blastp_output}
+
+# Now sort the blast output to keep only the best hit per query sequence
+#sort -k1,1 -k12,12g {blastp_output} | sort -u -k1,1 --merge > {blastp_output}.besthits
+
+#cp /data/users/mjacquey/annotation_course/scripts/final/ERR11437317.asm.bp.p_ctg.all.maker.proteins.fasta.renamed.filtered.fasta /data/users/mjacquey/annotation_course/scripts/final/ERR11437317.asm.bp.p_ctg.all.maker.proteins.fasta.renamed.filtered.fasta.Uniprot
+#cp /data/users/mjacquey/annotation_course/scripts/final/filtered.genes.renamed.gff3 /data/users/mjacquey/annotation_course/scripts/final/filtered.genes.renamed.gff3.Uniprot
+#$MAKERBIN/maker_functional_fasta $uniprot_fasta /data/users/mjacquey/annotation_course/scripts/{blastp_output}.besthits /data/users/mjacquey/annotation_course/scripts/final/ERR11437317.asm.bp.p_ctg.all.maker.proteins.fasta.renamed.filtered.fasta > /data/users/mjacquey/annotation_course/scripts/final/ERR11437317.asm.bp.p_ctg.all.maker.proteins.fasta.renamed.filtered.fasta.Uniprot
+#$MAKERBIN/maker_functional_gff $uniprot_fasta /data/users/mjacquey/annotation_course/scripts/{blastp_output} /data/users/mjacquey/annotation_course/scripts/final/filtered.genes.renamed.gff3 > /data/users/mjacquey/annotation_course/scripts/final/filtered.genes.renamed.gff3.Unipro.gff3
+
+blastp -query /data/users/mjacquey/annotation_course/scripts/final/ERR11437317.asm.bp.p_ctg.all.maker.proteins.fasta.renamed.filtered.fasta \
+    -db /data/courses/assembly-annotation-course/CDS_annotation/data/TAIR10_pep_20110103_representative_gene_model \
+    -num_threads 10 -outfmt 6 -evalue 1e-5 -max_target_seqs 10 -out blastp_output \
+
+    # Now sort the blast output to keep only the best hit per query sequence
+sort -k1,1 -k12,12g blastp_output | sort -u -k1,1 --merge > blastp_output.besthits

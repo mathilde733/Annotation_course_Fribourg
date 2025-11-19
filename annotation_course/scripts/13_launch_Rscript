@@ -1,0 +1,22 @@
+#!/bin/bash
+#SBATCH --job-name=uniprot
+#SBATCH --partition=pibu_el8
+#SBATCH --cpus-per-task=20
+#SBATCH --nodes=1
+#SBATCH --mem=120G
+#SBATCH --time=03:30:00
+
+module load R/4.3.2-foss-2021a
+
+COURSE_DIR=/data/courses/assembly-annotation-course/CDS_annotation
+WORK_DIR=/data/users/mjacquey/annotation_course
+GENESPACE_WORK_DIR=$WORK_DIR/genespace_output
+
+R_SCRIPT=$WORK_DIR/scripts/Rscript_genespace.R
+
+apptainer exec \
+    --bind $COURSE_DIR \
+    --bind $WORK_DIR \
+    --bind $SCRATCH:/temp \
+    $COURSE_DIR/containers/genespace_latest.sif \
+    Rscript $R_SCRIPT $GENESPACE_WORK_DIR

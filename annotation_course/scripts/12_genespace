@@ -1,0 +1,41 @@
+#!/bin/bash
+#SBATCH --job-name=genespace
+#SBATCH --partition=pibu_el8
+#SBATCH --cpus-per-task=12
+#SBATCH --nodes=1
+#SBATCH --mem=12G
+#SBATCH --time=00:10:00
+
+#Accession="Had-6b"
+
+#grep -P "\tgene\t" filtered.genes.renamed.gff3 > temp_genes.gff3
+
+#```bash
+#awk 'BEGIN{OFS="\t"} {split($9,a,";"); split(a[1],b,"="); print $1, $4-1, $5, b[2]}' temp_genes.gff3 > ${Accession}.bed
+#```
+
+
+Accession1="Are-6"
+
+grep -P "\tgene\t" /data/courses/assembly-annotation-course/CDS_annotation/data/Lian_et_al/gene_gff/selected/Are-6.EVM.v3.5.ann.protein_coding_genes.gff  > temp_genes.gff3
+
+```bash
+awk 'BEGIN{OFS="\t"} {split($9,a,";"); split(a[1],b,"="); print $1, $4-1, $5, b[2]}' temp_genes.gff3 > ${Accession1}.bed
+```
+
+Accession2="Est-0"
+
+grep -P "\tgene\t" /data/courses/assembly-annotation-course/CDS_annotation/data/Lian_et_al/gene_gff/selected/Est-0.EVM.v3.5.ann.protein_coding_genes.gff  > temp_genes.gff3
+
+```bash
+awk 'BEGIN{OFS="\t"} {split($9,a,";"); split(a[1],b,"="); print $1, $4-1, $5, b[2]}' temp_genes.gff3 > ${Accession2}.bed
+```
+
+
+Accession3="Etna-2"
+
+grep -P "\tgene\t" /data/courses/assembly-annotation-course/CDS_annotation/data/Lian_et_al/gene_gff/selected/Etna-2.EVM.v3.5.ann.protein_coding_genes.gff > temp_genes.gff3
+
+```bash
+awk 'BEGIN{OFS="\t"} {split($9,a,";"); split(a[1],b,"="); print $1, $4-1, $5, b[2]}' temp_genes.gff3 > ${Accession3}.bed
+```
