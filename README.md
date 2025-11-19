@@ -4,8 +4,12 @@ This repository contains the workflow, scripts, and results for the **genome ann
 
 Datasets used are from PacBio HiFi reads (WGS) and Illumina reads (RNA-seq). \
 Accession number: Had-6b, genetic group originating from Africa. \
-Raw data are from: [Qichao Lian et al. A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range](https://www.nature.com/articles/s41588-024-01715-9) and [Jiao WB, Schneeberger K. Chromosome-level assemblies of multiple Arabidopsis genomes reveal hotspots of rearrangements with altered evolutionary dynamics](http://dx.doi.org/10.1038/s41467-020-14779-y) 
-
+Raw data are from: [Qichao Lian et al. A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range](https://www.nature.com/articles/s41588-024-01715-9) and [Jiao WB, Schneeberger K. Chromosome-level assemblies of multiple Arabidopsis genomes reveal hotspots of rearrangements with altered evolutionary dynamics](http://dx.doi.org/10.1038/s41467-020-14779-y)  \
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mathilde733/Annotation_course_Fribourg/main/annotation_course/map.png" alt="map" width="200" height="200"/>
+  <br>
+  <em>Figure 1. Geographic origins of accessions. Had-6b is the focal accession; Are-6, Est-0 and Etna-2 were used for the GENESPACE analysis.</em>
+</p>
 
 ## Project Overview
 
@@ -14,23 +18,27 @@ Raw data are from: [Qichao Lian et al. A pan-genome of 69 Arabidopsis thaliana a
 ### First step is the transposable elements annotation and classification
 Steps including:
 - TE annotation using EDTA
-- Visualizing and comparing TE annotations from EDTA (visualization using R)
-- Refining TE classifications using TEsorter
-- Generate and visualizing TE dynamics (in R)
+- Visualization and comparison of TE annotations from EDTA (visualization using R)
+- TE classification refinement using TEsorter
+- TE age and dynamics analysis (in R)
 
 ### Second step is to annotate genes using the MAKER pipeline
 Steps including:
-- Ab initio gene prediction using Augustus and GeneMark
-- RNAseq Data to improve accuracy of gene models predicted by the Ab initio methods
+- *Ab initio* gene prediction using Augustus and GeneMark
+- Integration of RNAseq evidence to improve accuracy of gene models predicted by the *Ab initio* methods
 - Protein-homology-based annotation using Interproscan
-- Final gene model refinement ensuring biologically accurate annotations.\
-Quality assessment of gene annotations using BUSCO and visualization of gene annotation using Geneious 
+- Refinement of final gene models ensuring biologically accurate annotations.\
+- Quality assessment of gene annotations using BUSCO
+- Visualization of gene annotation using Geneious 
 
 ### Third step is the orthology based gene functional annotation and genome comparisons
 Steps including:
-- Sequence homology to functionally validated proteins using the Uniprot database and TAIR10
-- Comparative genomics using Orthofinder and GENESPACE (in R)
+- Homology searchess to functionally validated proteins using the Uniprot database and TAIR10
+- Comparative genomics using Orthofinder
+- Synteny analysis and visualization using GENESPACE (in R)
 - Visualization of the results, e.g., summary statistics results, dotplots and syntenic maps (also called [Riparian plots](https://htmlpreview.github.io/?https://github.com/jtlovell/tutorials/blob/main/riparianGuide.html))
+  
+For the comparative genomics analyses, several A. thaliana accessions are needed alongside the TAIR10 reference genome to ensure robust comparisons. Here, I used the accessions Are-6, Est-0, and Etna-2. Their sampling locations, together with Had-6b, are displayed in Figure 1 of this README.
 
 ---
 
