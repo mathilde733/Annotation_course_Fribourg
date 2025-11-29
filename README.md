@@ -38,9 +38,20 @@ Steps including:
 - Synteny analysis and visualization using GENESPACE (in R)
 - Visualization of the results, e.g., summary statistics results, dotplots and syntenic maps (also called [Riparian plots](https://htmlpreview.github.io/?https://github.com/jtlovell/tutorials/blob/main/riparianGuide.html))
   
-For the comparative genomics analyses, several A. thaliana accessions are needed alongside the TAIR10 reference genome to ensure robust comparisons. Here, I used the accessions Are-6, Est-0, and Etna-2. Their sampling locations, together with Had-6b, are displayed in Figure 1 of this README.
+For the comparative genomics analyses, several *A. thaliana* accessions are needed alongside the TAIR10 reference genome to ensure robust comparisons. Here, I used the accessions Are-6, Est-0, and Etna-2. Their sampling locations, together with Had-6b, are displayed in Figure 1 of this README.
 
 ---
+
+## Key Results
+- **Genome size**: 146 Mb (expected: 135 Mb)
+- **Gene count**: 26,714 genes
+- **TE content**: 14.48% (21.2 Mb)
+  - Gypsy: 2.82%
+  - Helitron: 3.16%
+- **BUSCO completeness**: 96.5% (assembly), 94.2% (annotation)
+- **Core genome**: 18,450 genes shared across 5 accessions
+- **Had-6b specific genes**: 5,354
+
 
 ## ⚙️ Tools and Software
 - [EDTA version 2.2](https://github.com/oushujun/EDTA), see [Benchmarking transposable element annotation methods for creation of a streamlined, comprehensive pipeline](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1905-y)
@@ -61,4 +72,18 @@ For the comparative genomics analyses, several A. thaliana accessions are needed
 
 Some of the tools used in this workflow were run within Apptainer containers to ensure reproducibility and consistent environments. The other softwares were installed via modules.
 ```apptainer exec --bind /data:/data /containers/apptainer/``` or ```module avail/load name```
+
+##  Repository Structure
+```
+Annotation_course_Fribourg/
+├── README.md
+├── scripts/
+│   ├── 01_ to 03_/        # EDTA pipeline scripts
+│   ├── 04_ to 10_/        # MAKER, Augustus, GeneMark scripts
+│   ├── 11_ to 13_/        # Orthofinder, GENESPACE scripts
+│   │── others/            # R scripts for all figures; perl scripts
+│   └── tables/            # Summary statistics 
+└── figures/               # All figures that are presented in the report 
+```
+
 
